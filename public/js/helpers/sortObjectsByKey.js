@@ -1,13 +1,13 @@
 import { propOr } from "./propOr.js";
 
-const emptyCell = "";
+const emptyCell = 0;
 
 const sortObjectsByKey = (key, isDescend, arr) => {
   const flipIfDescend = isDescend ? -1 : 1;
   const sortedData = [...arr];
   return sortedData.sort((ele1, ele2) => {
-    const sortA = propOr(emptyCell, key, ele1).toUpperCase();
-    const sortB = propOr(emptyCell, key, ele2).toUpperCase();
+    const sortA = propOr(emptyCell, key, ele1);
+    const sortB = propOr(emptyCell, key, ele2);
     if (sortA < sortB) {
       return -1 * flipIfDescend;
     }

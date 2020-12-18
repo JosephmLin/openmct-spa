@@ -5,9 +5,13 @@
 import { propOr } from "./helpers/propOr.js";
 import { rerenderSort } from "./helpers/rerenderSort.js";
 
+const emptyCell = "";
 const tableId = "table";
 const table = document.getElementById(tableId);
-const emptyCell = "";
+
+const clearTable = () => {
+  table.innerHTML = "";
+};
 
 const createTableHeader = (headerRow, setSort) => (header, index) => {
   const cell = headerRow.insertCell(index);
@@ -24,6 +28,7 @@ const createTableBody = (body, headers) => (data, rowIndex) => {
 };
 
 const buildTable = (tableData, headers) => {
+  clearTable();
   const setSort = rerenderSort(buildTable, tableData, headers);
   const headerRow = table.createTHead().insertRow(0);
   headers.forEach(createTableHeader(headerRow, setSort));

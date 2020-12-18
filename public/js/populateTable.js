@@ -1,12 +1,34 @@
 import { buildTable } from "./buildTable.js";
-function populateTable() {
-  buildTable(
-    [
-      { a: "1", b: "2", c: "4" },
-      { c: "3", d: "4" },
-    ],
-    ["a", "b", "c", "d"]
-  );
-}
+import { generateIdCheckboxes } from "./helpers/generateIdCheckboxes.js";
+import { retrieveTableProps } from "./helpers/retrieveTableProps.js";
 
-populateTable();
+let idState = {
+  "pwr.v": true,
+  "pwr.c": true,
+};
+
+const filterData = (data) => data.filter(({ id }) => idState[id]);
+const rerenderTable = (data, headers) => () => {
+  const filteredData = filterData(data);
+  buildTable(filteredData, headers);
+};
+
+const init = async () => {
+  const { data, headers } = await retrieveTableProps(Object.keys(idState));
+
+  const thunkedRerenderTable = rerenderTable(data, headers);
+
+  const oncheck = (id) => () => {
+    idState = {
+      ...idState,
+      [id]: !idState[id],
+    };
+    generateIdCheckboxes(idState, oncheck);
+    thunkedRerenderTable();
+  };
+
+  generateIdCheckboxes(idState, oncheck);
+  thunkedRerenderTable();
+};
+
+init();
