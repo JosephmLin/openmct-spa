@@ -1,0 +1,19 @@
+{
+  "name": "openmct-spa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "bootstrap": "^4.5.3",
+    "bootstrap-table": "^1.18.1",
+    "express": "^4.17.1",
+    "path": "^0.12.7"
+  }
+}
