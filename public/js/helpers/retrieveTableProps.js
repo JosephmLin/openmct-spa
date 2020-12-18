@@ -1,5 +1,4 @@
 const historyUrl = "http://localhost:8080/history";
-const wsUrl = "http://localhost:8080/realtime";
 const MS_PER_MINUTE = 60000;
 const fifteenMinutesInMilliseconds = MS_PER_MINUTE * 15;
 const start = new Date(Date.now() - fifteenMinutesInMilliseconds).valueOf();

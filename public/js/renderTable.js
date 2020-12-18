@@ -27,13 +27,13 @@ const createTableBody = (body, headers) => (data, rowIndex) => {
   });
 };
 
-const buildTable = (tableData, headers) => {
+const renderTable = (tableData, headers) => {
   clearTable();
-  const setSort = rerenderSort(buildTable, tableData, headers);
+  const setSort = rerenderSort(renderTable, tableData, headers);
   const headerRow = table.createTHead().insertRow(0);
   headers.forEach(createTableHeader(headerRow, setSort));
   const body = table.createTBody();
   tableData.forEach(createTableBody(body, headers));
 };
 
-export { buildTable };
+export { renderTable };
